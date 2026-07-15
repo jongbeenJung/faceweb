@@ -1,8 +1,7 @@
-import os
-os.system("pip uninstall -y opencv-python")
 import streamlit as st
 import cv2
 import tempfile
+import os
 import numpy as np
 from deepface import DeepFace
 from PIL import Image
