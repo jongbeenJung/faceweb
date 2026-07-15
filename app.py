@@ -6,7 +6,7 @@ try:
     import cv2
 except ImportError:
     os.system("pip uninstall -y opencv-python opencv-python-headless")
-    os.system("pip install opencv-python-headless")
+    os.system("pip install opencv-python-headless==4.8.1.78")
     if "cv2" in sys.modules:
         del sys.modules["cv2"]
 # --- 자가 치유 마법 코드 끝 ---
