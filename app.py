@@ -84,7 +84,7 @@ def load_database():
                     rep = DeepFace.represent(img_path=img, model_name="VGG-Face", enforce_detection=False)
                     db_embeddings[img_path] = rep[0]['embedding']
             except Exception:
-                pass
+                st.error(f"⚠️ {filename} 사진 분석 실패 원인: {e}")
     return db_embeddings
 
 db_embeddings = load_database()
