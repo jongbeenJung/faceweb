@@ -61,7 +61,8 @@ MENTIONS = {
     "헤디 라마르": "뛰어난 외모에 천재적인 발명 감각까지! 당신은 여러 방면에서 팔방미인이시군요."
 }
 
-DB_PATH = "scientists"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.join(BASE_DIR, "scientists")
 
 # ==========================================
 # 2. 데이터베이스 로딩 (캐싱)
