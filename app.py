@@ -61,7 +61,7 @@ MENTIONS = {
     "헤디 라마르": "뛰어난 외모에 천재적인 발명 감각까지! 당신은 여러 방면에서 팔방미인이시군요."
 }
 
-DB_PATH = "./scientists"
+DB_PATH = "scientists"
 
 # ==========================================
 # 2. 데이터베이스 로딩 (캐싱)
@@ -95,15 +95,15 @@ st.title("🔬 나와 가장 닮은 위대한 과학자는?")
 st.write("아래 카메라 창에서 **[Take Photo]** 버튼을 눌러 사진을 찍어보세요! AI가 47명의 위대한 과학자 중 당신과 가장 닮은 사람을 찾아줍니다.")
 
 if db_embeddings is None or len(db_embeddings) == 0:
-    st.error(f"❌ '{DB_PATH}' 폴더를 찾을 수 없거나 얼굴 데이터를 읽지 못했습니다.")
+    st.error(f"'{DB_PATH}' 폴더를 찾을 수 없거나 얼굴 데이터를 읽지 못했습니다.")
     st.stop()
 
-# 💡 스마트폰/웹캠을 지원하는 스트림릿 기본 카메라 위젯
+# 스마트폰/웹캠을 지원하는 스트림릿 기본 카메라 위젯
 picture = st.camera_input("얼굴이 잘 나오게 사진을 찍어주세요")
 
 # 사용자가 사진을 찍었을 때 실행되는 로직
 if picture is not None:
-    with st.spinner("AI가 당신의 얼굴을 분석하고 있습니다. 잠시만 기다려주세요... 🤖"):
+    with st.spinner("AI가 당신의 얼굴을 분석하고 있습니다. 잠시만 기다려주세요..."):
         try:
             # 웹 카메라로 찍은 사진을 파일로 임시 저장
             temp_dir = tempfile.gettempdir()
@@ -154,12 +154,12 @@ if picture is not None:
                     matched_img_rgb = cv2.cvtColor(matched_img_cv, cv2.COLOR_BGR2RGB)
                     st.image(Image.fromarray(matched_img_rgb), caption=f"닮은 과학자: {scientist_name}", use_container_width=True)
 
-                st.info(f"💬 **한마디:** {mention}")
+                st.info(f"**한마디:** {mention}")
 
         except ValueError:
-            st.error("❌ 얼굴을 찾지 못했습니다! 카메라 정면을 밝은 곳에서 다시 찍어주세요.")
+            st.error("얼굴을 찾지 못했습니다! 카메라 정면을 밝은 곳에서 다시 찍어주세요.")
         except Exception as e:
-            st.error(f"❌ 알 수 없는 오류가 발생했습니다: {e}")
+            st.error(f"알 수 없는 오류가 발생했습니다: {e}")
 
 st.divider()
 st.caption("Developed with Streamlit & DeepFace")
