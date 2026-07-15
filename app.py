@@ -81,9 +81,9 @@ def load_database():
                 img_array = np.fromfile(img_path, np.uint8)
                 img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
                 if img is not None:
-                    rep = DeepFace.represent(img_path=img, model_name="VGG-Face", enforce_detection=False)
+                    rep = DeepFace.represent(img_path=img, model_name="VGG-Face", enforce_detection=False, detector_backend="skip")
                     db_embeddings[img_path] = rep[0]['embedding']
-            except Exception:
+            except Exception as e:
                 st.error(f"⚠️ {filename} 사진 분석 실패 원인: {e}")
     return db_embeddings
 
